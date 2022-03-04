@@ -5,9 +5,9 @@ import {
 	useState,
 	ReactNode,
 } from 'react';
-import { api } from './services/api';
+import { api } from '../services/api';
 
-export const TransactionsContext = createContext<TransactionsContextData>(
+const TransactionsContext = createContext<TransactionsContextData>(
 	{} as TransactionsContextData //Gambiarra para o TypeScript aceitar
 );
 
@@ -73,4 +73,10 @@ export function TransactionsProvider({ children }: TransactionsProviderProps) {
 			{children}
 		</TransactionsContext.Provider>
 	);
+}
+
+export function useTransactions() {
+	const context = useContext(TransactionsContext);
+
+	return context;
 }
